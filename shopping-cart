@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shopping Cart</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      color: #333;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #007bff;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 400px;
+    }
+
+    li {
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    #total {
+      font-weight: bold;
+      margin-top: 1rem;
+      color: #28a745;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Shopping Cart</h1>
+  <ul id="itemList"></ul>
+  <div id="total"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sample cart
+      const cart = [
+        { name: 'Pen', price: 10, quantity: 2 },
+        { name: 'Notebook', price: 50, quantity: 1 },
+        { name: 'Pencil', price: 5, quantity: 4 }
+      ];
+
+      // 1. Add total price to each item
+      const itemsWithTotal = cart.map(item => ({
+        ...item,
+        total: item.price * item.quantity
+      }));
+
+      // 2. Create item description strings
+      const descriptions = itemsWithTotal.map(
+        item => `${item.name} - ₱${item.total}`
+      );
+
+      // 3. Compute total cart value
+      const totalValue = itemsWithTotal.reduce(
+        (sum, item) => sum + item.total, 0
+      );
+
+      // 4. Render to DOM
+      const listEl = document.getElementById('itemList');
+      descriptions.forEach(desc => {
+        const li = document.createElement('li');
+        li.textContent = desc;
+        listEl.appendChild(li);
+      });
+
+      const totalEl = document.getElementById('total');
+      totalEl.textContent = `🧾 Total Cart Value: ₱${totalValue}`;
+    });
+  </script>
+</body>
+</html>
