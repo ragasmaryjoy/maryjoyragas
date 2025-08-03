@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Object Analyzer</title> 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    li {
+      background: #ecf0f1;
+      margin-bottom: 0.3rem;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      max-width: 200px;
+    }
+    pre {
+      background: #ecf0f1;
+      padding: 1rem;
+      border-radius: 4px;
+      max-width: 400px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Object Property Analyzer</h1> 
+  <div id="results"></div>
+
+  <script>
+    const settings = {
+      darkMode: true,
+      notifications: false,
+      autoSave: true,
+      spellCheck: false,
+      grammarCheck: true
+    };
+
+    const enabledEntries = Object.entries(settings).filter(([_, value]) => value);
+    const enabledCount = enabledEntries.length;
+    const enabledSettings = Object.fromEntries(enabledEntries);
+    const enabledList = enabledEntries.map(([key]) => `${key}: true`);
+
+    const resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = `
+      <h2>Enabled Settings (${enabledCount}):</h2>
+      <ul>
+        ${enabledList.map(item => `<li>${item}</li>`).join('')}
+      </ul>
+      <h2>Filtered Settings Object:</h2>
+      <pre>${JSON.stringify(enabledSettings, null, 2)}</pre>
+    `;
+  </script>
+
+</body>
+</html>
