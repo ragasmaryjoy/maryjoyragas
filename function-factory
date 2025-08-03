@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Function Factory</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 2rem;
+      margin: 0;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    code {
+      background-color: #eee;
+      padding: 0.2rem 0.4rem;
+      border-radius: 3px;
+      font-family: Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <h1>Function Factory</h1>
+  <p>Open the console to see the results of <code>makeMultiplier</code> and <code>makeGreeter</code>.</p>
+
+  <script>
+    // Task: Create a function makeMultiplier(factor)
+    // That returns another function to multiply a number by the factor
+    const makeMultiplier = (factor) => {
+      return (number) => number * factor;
+    };
+
+    // Example usage:
+    const double = makeMultiplier(2); // Multiplies by 2
+    console.log('--- makeMultiplier ---');
+    console.log(`double(5) = ${double(5)}`); // Expected: 10
+
+    // Task: Create makeGreeter(greeting)
+    // That returns a personalized greeting function
+    const makeGreeter = (greeting) => {
+      return (name) => `${greeting}, ${name}!`;
+    };
+
+    // Example usage:
+    const sayHi = makeGreeter("Hi");
+    console.log('--- makeGreeter ---');
+    console.log(sayHi("Mia")); // Expected: "Hi, Mia!"
+  </script>
+</body>
+</html>
